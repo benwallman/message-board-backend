@@ -1,7 +1,8 @@
+import { getAllMessages } from './message'
 
-describe('foo', () => {
-  it('bar', () => {
-    expect(1).toEqual(2)
+describe('getAllMessages', () => {
+  it('returns all messages', async () => {
+    const messages = await getAllMessages()
+    expect(messages).toEqual([])
   })
 })
-
