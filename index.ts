@@ -1,9 +1,19 @@
 import express from 'express'
+import { json, urlencoded } from 'body-parser'
+
+import {
+  getAllMessages,
+} from './handlers/message'
+
 
 const app = express()
 
+app.use(json())
+app.use(urlencoded({ extended: true }))
+
 app.get('/', async (req, res) => {
-  res.send('Hello World')
+  const messages = await getAllMessages()
+  res.send(messages)
 })
 
 app.listen(3000, () => {
