@@ -24,7 +24,7 @@ describe('createMessage', () => {
     const initialMessages = await getAllMessages()
     expect(initialMessages.length).toEqual(0)
 
-    await createMessage('hello', uuid())
+    await createMessage('foo', uuid())
     const messages = await getAllMessages()
     expect(messages.length).toEqual(1)
   })
@@ -39,8 +39,8 @@ describe('getMessage', () => {
 })
 
 describe('deleteMessage', () => {
-  it('deletes a message by the ID', async () => {
-    const messageId = await createMessage('Hello World', uuid())
+  it('deletes a message with the ID', async () => {
+    const messageId = await createMessage('foo', uuid())
     const initialMessages = await getAllMessages()
     expect(initialMessages.length).toEqual(1)
 
