@@ -4,11 +4,14 @@ interface Message {
   id: string;
   text: string;
   user: string;
+  createdAt: Date;
+  updatedAt?: Date;
 }
 
 let messages: Message[] = []
 
 export const getAllMessages = async () => messages
+  .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
 
 // N.B. For unit testing only !!!
 export const _clearMessages = async () => {
@@ -21,7 +24,12 @@ const updateMessages = async (newMessages: Message[]) => {
 
 export const createMessage = async (text: string, user: string) => {
   const id = uuid()
-  const message = { id, text, user }
+  const message = {
+    id,
+    text,
+    user,
+    createdAt: new Date(),
+  }
   const newMessages = [...messages, message]
   updateMessages(newMessages)
   return id
@@ -35,7 +43,11 @@ export const getMessage = async (id: string) => {
 
 export const updateMessage = async (id: string, text: string) => {
   const message = await getMessage(id)
-  const newMessage = { ...message, text }
+  const newMessage = {
+    ...message,
+    text,
+    updatedAt: new Date(),
+  }
   const newMessages = [...messages].map(message => message.id === id ? newMessage : message)
   updateMessages(newMessages)
 }
