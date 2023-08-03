@@ -14,7 +14,6 @@ docker build -t message-board-backend .
 docker run -p 3000:3000 message-board-backend
 ```
 
-
 ## Technical choices
 
 I chose to use Express with Typescript, in a barebones setup. This, along with many other decisions, was due to time constraints. This means features such as logging and error handling are missing.
@@ -28,11 +27,11 @@ I used Docker to avoid versioning issues, and because it's quick to set up.
 
 ## Endpoints
 
-There's a few endpoints here.
+There's a few endpoints here:
 
-Get `http://localhost:3000/` - Return all messages
+Get `http://localhost:3000/` - Return all messages.
 
-Get `http://localhost:3000/:messageId` - Return specific messages
+Get `http://localhost:3000/:messageId` - Return a message.
 
 POST `http://localhost:3000/` - Create a message e.g.
 ```JSON
@@ -41,6 +40,8 @@ POST `http://localhost:3000/` - Create a message e.g.
   "user": "foo"
 }
 ```
+
+PUT `http://localhost:3000/:messageId` - Update a message.
 
 DELETE `http://localhost:3000/:messageId` - Delete a message.
 
